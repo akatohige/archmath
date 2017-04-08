@@ -1,7 +1,7 @@
 #include <iostream>
-#include <scholar.h>
+#include <arch/math.h>
 
-using namespace scholar;
+using namespace arch;
 
 int main()
 {

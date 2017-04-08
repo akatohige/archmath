@@ -1,10 +1,10 @@
 ﻿//=================================================================================//
 //                                                                                 //
-//  scholar                                                                        //
+//  ArchMath                                                                       //
 //                                                                                 //
-//  Copyright (C) 2011-2016 Terry                                                  //
+//  Copyright (C) 2011-2017 Terry                                                  //
 //                                                                                 //
-//  This file is a portion of the scholar. It is distributed under the MIT         //
+//  This file is a portion of the ArchMath. It is distributed under the MIT	       //
 //  License, available in the root of this distribution and at the following URL.  //
 //  http://opensource.org/licenses/mit-license.php                                 //
 //                                                                                 //
@@ -15,7 +15,7 @@
 #include <cstdint>
 #include <cstddef>
 
-namespace scholar
+namespace arch
 {
 
 typedef signed char		schar;
