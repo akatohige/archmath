@@ -29,42 +29,42 @@ public:
 	typedef const type& const_reference;
 
 public:
-	value(const dimension& _dim = dimension::dimensionless())
+	constexpr value(const dimension& _dim = dimension::dimensionless())
 		: m_dimension(_dim)
 	{
 	}
 
-	value(const dimension& _dim, const value_type& _quantity)
+	constexpr value(const dimension& _dim, const value_type& _quantity)
 		: quantity(_quantity), dim(_dim)
 	{
 	}
 
 	~value() = default;
 
-	value& operator=(const value& _value)
+	constexpr value& operator=(const value& _value)
 	{
 		quantity = _value.quantity;
 		dim = _value.dim;
 		return *this;
 	}
 
-	value& operator=(const value_type& _quantity)
+	constexpr value& operator=(const value_type& _quantity)
 	{
 		quantity = _quantity;
 		return *this;
 	}
 
-	value operator+(const value& _value) const
+	constexpr value operator+(const value& _value) const
 	{
 		return value(dim, quantity + _value.quantity);
 	}
 
-	value operator+(const value_type& _quantity)
+	constexpr value operator+(const value_type& _quantity)
 	{
 		return value(dim, quantity + _quantity);
 	}
 
-	value& operator+=(const value& _value)
+	constexpr value& operator+=(const value& _value)
 	{
 		if (dim == _value.dim)
 		{
@@ -73,23 +73,23 @@ public:
 		return *this;
 	}
 
-	value& operator+=(const value_type& _quantity)
+	constexpr value& operator+=(const value_type& _quantity)
 	{
 		quantity += _quantity;
 		return *this;
 	}
 
-	value operator-(const value& _value) const
+	constexpr value operator-(const value& _value) const
 	{
 		return value(dim, quantity - _value.quantity);
 	}
 
-	value operator-(const value_type& _quantity) const
+	constexpr value operator-(const value_type& _quantity) const
 	{
 		return value(dim, quantity - _quantity);
 	}
 
-	value& operator-=(const value& _value)
+	constexpr value& operator-=(const value& _value)
 	{
 		if (dim == _value.dim)
 		{
@@ -98,74 +98,74 @@ public:
 		return *this;
 	}
 
-	value& operator-=(const value_type& _quantity)
+	constexpr value& operator-=(const value_type& _quantity)
 	{
 		quantity -= _quantity;
 		return *this;
 	}
 
-	value operator*(const value& _value) const
+	constexpr value operator*(const value& _value) const
 	{
 		return value(dim * _value.dim, quantity * _value.quantity);
 	}
 
-	value operator*(const value_type& _quantity) const
+	constexpr value operator*(const value_type& _quantity) const
 	{
 		return value(dim, quantity * _quantity);
 	}
 
-	value& operator*=(const value& _value)
+	constexpr value& operator*=(const value& _value)
 	{
 		quantity *= _value.quantity;
 		dim *= _value.dim;
 		return *this;
 	}
 
-	value& operator*=(const value_type& _quantity)
+	constexpr value& operator*=(const value_type& _quantity)
 	{
 		quantity *= _quantity;
 		return *this;
 	}
 
-	value operator/(const value& _value) const
+	constexpr value operator/(const value& _value) const
 	{
 		return value(dim / _value.dim, quantity / _value.quantity);
 	}
 
-	value operator/(const value_type& _quantity) const
+	constexpr value operator/(const value_type& _quantity) const
 	{
 		return value(dim, quantity / _quantity);
 	}
 
-	value& operator/=(const value& _value)
+	constexpr value& operator/=(const value& _value)
 	{
 		quantity /= _value.quantity;
 		dim /= _value.dim;
 		return *this;
 	}
 
-	value& operator/=(const value_type& _quantity)
+	constexpr value& operator/=(const value_type& _quantity)
 	{
 		quantity /= quantity;
 		return *this;
 	}
 
-	bool operator==(const value& _value) const
+	constexpr bool operator==(const value& _value) const
 	{
 		return quantity == _value.quantity && dim == _value.dim;
 	}
 
-	bool operator==(const value_type& _quantity) const
+	constexpr bool operator==(const value_type& _quantity) const
 	{
 		return quantity == _quantity;
 	}
 
-	bool operator!=(const value& _value) const
+	constexpr bool operator!=(const value& _value) const
 	{
 		return quantity != _value.quantity || dim != _value.dim;
 	}
 
-	bool operator!=(const value_type& _quantity) const
+	constexpr bool operator!=(const value_type& _quantity) const
 	{
 		return quantity != _quantity;
 	}

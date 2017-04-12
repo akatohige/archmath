@@ -12,16 +12,49 @@
 
 #pragma once
 
-#include <cmath>
 #include <type_traits>
 #include "constants.h"
 
 namespace arch
 {
 
-template<class type> inline constexpr type round(type _value)
+template<class type> inline constexpr type abs(type _x)
 {
-	return std::floor(_value + static_cast<type>(0.5));
+	return _x < static_cast<type>(0.0) ? -_x : _x;
+}
+
+template<class type> inline constexpr type sqrt(type _x)
+{
+	type n = _x / static_cast<type>(2.0);
+	type p = static_cast<type>(0.0);
+
+	while (n != p)
+	{
+		p = n;
+		n = (n + _x / n) / static_cast<type>(2.0);
+	}
+	return n;
+}
+
+template<class type> inline constexpr type pow(type _x, type _y)
+{
+	return _y == 0 ? 1 : _y < 0 ? pow(_x, _y + 1) / _x : _x * pow(_x, _y - 1);
+}
+
+template<class type> inline constexpr type ceil(type _x)
+{
+	//return static_cast<type>(static_cast<long long>(_x + static_cast<type>(0.9)));
+	return static_cast<type>(static_cast<long long>(_x)) == _x ? _x : static_cast<type>(static_cast<long long>(_x + (_x < static_cast<type>(0.0) ? 0 : 1)));
+}
+
+template<class type> inline constexpr type floor(type _x)
+{
+	return static_cast<type>(static_cast<long long>(_x - static_cast<type>(0.9)));
+}
+
+template<class type> inline constexpr type round(type _x)
+{
+	return _x >= 0 ? floor(_x + static_cast<type>(0.5)) : ceil(_x - static_cast<type>(0.5));
 }
 
 template<class type> inline constexpr type min(type _a, type _b)

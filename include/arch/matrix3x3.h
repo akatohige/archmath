@@ -108,7 +108,7 @@ public:
 				);
 	}
 
-	matrix3x3 inverse() const
+	constexpr matrix3x3 inverse() const
 	{
 		value_type det = determinant();
 		return (det != 0) ? cofactor() / det : identity();
@@ -120,7 +120,7 @@ public:
 		return (_determinant != 0) ? cofactor() / _determinant : identity();
 	}
 
-	matrix3x3 transpose() const
+	constexpr matrix3x3 transpose() const
 	{
 		return matrix3x3<value_type>
 			(
@@ -156,7 +156,7 @@ public:
 	}
 
 public:
-	matrix3x3& operator=(const matrix3x3& _matrix)
+	constexpr matrix3x3& operator=(const matrix3x3& _matrix)
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -168,7 +168,7 @@ public:
 		return *this;
 	}
 
-	matrix3x3 operator+(const matrix3x3& _matrix) const
+	constexpr matrix3x3 operator+(const matrix3x3& _matrix) const
 	{
 		matrix3x3<value_type> mat;
 		for (size_t y = 0; y < 3; y++)
@@ -181,7 +181,7 @@ public:
 		return std::move(mat);
 	}
 
-	matrix3x3& operator+=(const matrix3x3& _matrix)
+	constexpr matrix3x3& operator+=(const matrix3x3& _matrix)
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -193,7 +193,7 @@ public:
 		return *this;
 	}
 
-	matrix3x3 operator-(const matrix3x3& _matrix) const
+	constexpr matrix3x3 operator-(const matrix3x3& _matrix) const
 	{
 		matrix3x3<value_type> mat;
 		for (size_t y = 0; y < 3; y++)
@@ -206,7 +206,7 @@ public:
 		return std::move(mat);
 	}
 
-	matrix3x3& operator-=(const matrix3x3& _matrix)
+	constexpr matrix3x3& operator-=(const matrix3x3& _matrix)
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -218,7 +218,7 @@ public:
 		return *this;
 	}
 
-	matrix3x3 operator*(const matrix3x3& _matrix) const
+	constexpr matrix3x3 operator*(const matrix3x3& _matrix) const
 	{
 		matrix3x3<value_type> mat = zero();
 		for (size_t y = 0; y < 3; y++)
@@ -234,7 +234,7 @@ public:
 		return std::move(mat);
 	}
 
-	matrix3x3 operator*(value_type value) const
+	constexpr matrix3x3 operator*(value_type value) const
 	{
 		matrix3x3<value_type> mat;
 		for (size_t y = 0; y < 3; y++)
@@ -247,13 +247,13 @@ public:
 		return std::move(mat);
 	}
 
-	matrix3x3& operator*=(const matrix3x3& _matrix)
+	constexpr matrix3x3& operator*=(const matrix3x3& _matrix)
 	{
 		*this = std::move(*this * _matrix);
 		return *this;
 	}
 
-	matrix3x3& operator*=(value_type value)
+	constexpr matrix3x3& operator*=(value_type value)
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -265,7 +265,7 @@ public:
 		return *this;
 	}
 
-	matrix3x3 operator/(value_type value) const
+	constexpr matrix3x3 operator/(value_type value) const
 	{
 		matrix3x3<value_type> mat;
 		for (size_t y = 0; y < 3; y++)
@@ -278,7 +278,7 @@ public:
 		return std::move(mat);
 	}
 
-	matrix3x3& operator/=(value_type value)
+	constexpr matrix3x3& operator/=(value_type value)
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -290,7 +290,7 @@ public:
 		return *this;
 	}
 
-	bool operator==(const matrix3x3& vector) const
+	constexpr bool operator==(const matrix3x3& vector) const
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -305,7 +305,7 @@ public:
 		return true;
 	}
 
-	bool operator!=(const matrix3x3& vector) const
+	constexpr bool operator!=(const matrix3x3& vector) const
 	{
 		for (size_t y = 0; y < 3; y++)
 		{
@@ -320,7 +320,7 @@ public:
 		return false;
 	}
 
-	matrix3x3 operator+() const
+	constexpr matrix3x3 operator+() const
 	{
 		matrix3x3<value_type> mat;
 		for (size_t y = 0; y < 3; y++)
@@ -333,7 +333,7 @@ public:
 		return std::move(mat);
 	}
 
-	matrix3x3 operator-() const
+	constexpr matrix3x3 operator-() const
 	{
 		matrix3x3<value_type> mat;
 		for (size_t y = 0; y < 3; y++)
@@ -346,22 +346,22 @@ public:
 		return std::move(mat);
 	}
 
-	value_type operator()(size_type _row, size_type _column) const
+	constexpr value_type operator()(size_type _row, size_type _column) const
 	{
 		return data[_row][_column];
 	}
 
-	value_type& operator()(size_type _row, size_type _column)
+	constexpr value_type& operator()(size_type _row, size_type _column)
 	{
 		return data[_row][_column];
 	}
 
-	const value_type* operator[](size_type _row) const
+	constexpr const value_type* operator[](size_type _row) const
 	{
 		return data[_row];
 	}
 
-	value_type* operator[](size_type _row)
+	constexpr value_type* operator[](size_type _row)
 	{
 		return data[_row];
 	}

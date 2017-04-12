@@ -14,7 +14,6 @@
 
 #include <iostream>
 #include <string>
-#include <scholar.h>
 
 namespace arch
 {
@@ -27,7 +26,7 @@ public:
 	{
 	}
 
-	dimension& operator=(const dimension& _dim)
+	constexpr dimension& operator=(const dimension& _dim)
 	{
 		M = _dim.M;
 		L = _dim.L;
@@ -39,7 +38,7 @@ public:
 		return *this;
 	}
 
-	dimension operator*(const dimension& _dim) const
+	constexpr dimension operator*(const dimension& _dim) const
 	{
 		int _M = M + _dim.M;
 		int _L = L + _dim.L;
@@ -51,7 +50,7 @@ public:
 		return dimension(_M, _L, _T, _I, _O, _N, _J);
 	}
 
-	dimension& operator*=(const dimension& _dim)
+	constexpr dimension& operator*=(const dimension& _dim)
 	{
 		M += _dim.M;
 		L += _dim.L;
@@ -63,7 +62,7 @@ public:
 		return *this;
 	}
 
-	dimension operator/(const dimension& _dim) const
+	constexpr dimension operator/(const dimension& _dim) const
 	{
 		int _M = M - _dim.M;
 		int _L = L - _dim.L;
@@ -75,7 +74,7 @@ public:
 		return dimension(_M, _L, _T, _I, _O, _N, _J);
 	}
 
-	dimension& operator/=(const dimension& _dim)
+	constexpr dimension& operator/=(const dimension& _dim)
 	{
 		M -= _dim.M;
 		L -= _dim.L;
@@ -87,12 +86,12 @@ public:
 		return *this;
 	}
 
-	bool operator==(const dimension& _dim) const
+	constexpr bool operator==(const dimension& _dim) const
 	{
 		return (M == _dim.M && L == _dim.L && T == _dim.T && I == _dim.I && O == _dim.O && N == _dim.N && J == _dim.J);
 	}
 
-	bool operator!=(const dimension& _dim) const
+	constexpr bool operator!=(const dimension& _dim) const
 	{
 		return (M != _dim.M || L != _dim.L || T != _dim.T || I != _dim.I || O != _dim.O || N != _dim.N || J != _dim.J);
 	}

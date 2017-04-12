@@ -15,6 +15,7 @@
 #include <type_traits>
 #include <limits>
 #include "vector.h"
+#include "functions.h"
 #include "interpolation.h"
 
 namespace arch
@@ -24,7 +25,7 @@ namespace arch
 *	@brief 色相、彩度、明度で色を表します。
 */
 template<class type = double>
-class hsv_color
+class hsv
 {
 public:
 	static_assert(std::is_floating_point<type>::value, "This type must be an floating point type.");
@@ -32,7 +33,7 @@ public:
 	/*!
 	*	@brief コンストラクタ
 	*/
-	hsv_color() = default;
+	hsv() = default;
 
 	/*!
 	*	@brief 色相、彩度、明度を設定します
@@ -40,7 +41,7 @@ public:
 	*	@param [in]	s	彩度
 	*	@param [in]	v	明度
 	*/
-	hsv_color(type _h, type _s, type _v)
+	constexpr hsv(type _h, type _s, type _v)
 		: h(_h), s(_s), v(_v)
 	{
 	}
@@ -49,7 +50,7 @@ public:
 	*	@brief 色で色相、彩度、明度を設定します
 	*	@param [in]	Color	色
 	*/
-	hsv_color(const uchar4& c) noexcept
+	constexpr hsv(const uchar4& c) noexcept
 	{
 		*this = c;
 	}
@@ -58,7 +59,7 @@ public:
 	*	@brief 色で色相、彩度、明度を設定します
 	*	@param [in]	Color	色
 	*/
-	hsv_color(const vector4<type>& c) noexcept
+	constexpr hsv(const vector4<type>& c) noexcept
 	{
 		*this = c;
 	}
@@ -66,9 +67,9 @@ public:
 	/*!
 	*	@brief デストラクタ
 	*/
-	~hsv_color() = default;
+	~hsv() = default;
 
-	template<class convert_type = double> vector4<convert_type> to_vector4() const
+	template<class convert_type = double> constexpr vector4<convert_type> to_vector4() const
 	{
 		vector4<type> result;
 
@@ -99,19 +100,19 @@ public:
 		case 4: result.r = t;	result.g = p;	result.b = v;	break;
 		case 5: result.r = v;	result.g = p;	result.b = q;	break;
 		}
-
+		/*
 		if (std::is_integral<convert_type>::value)
 		{
-			result.r = linear(static_cast<type>(std::numeric_limits<convert_type>::min()), static_cast<type>(std::numeric_limits<convert_type>::max()), result.r);
-			result.g = linear(static_cast<type>(std::numeric_limits<convert_type>::min()), static_cast<type>(std::numeric_limits<convert_type>::max()), result.g);
-			result.b = linear(static_cast<type>(std::numeric_limits<convert_type>::min()), static_cast<type>(std::numeric_limits<convert_type>::max()), result.b);
-			result.a = linear(static_cast<type>(std::numeric_limits<convert_type>::min()), static_cast<type>(std::numeric_limits<convert_type>::max()), result.a);
+			result.r = linear(std::numeric_limits<convert_type>::min(), std::numeric_limits<convert_type>::max(), result.r);
+			result.g = linear(std::numeric_limits<convert_type>::min(), std::numeric_limits<convert_type>::max(), result.g);
+			result.b = linear(std::numeric_limits<convert_type>::min(), std::numeric_limits<convert_type>::max(), result.b);
+			result.a = linear(std::numeric_limits<convert_type>::min(), std::numeric_limits<convert_type>::max(), result.a);
 		}
-
+		*/
 		return static_cast<vector4<convert_type>>(result);
 	}
 
-	hsv_color& operator=(const hsv_color& c)
+	constexpr hsv& operator=(const hsv& c)
 	{
 		this->h = c.h;
 		this->s = c.s;
@@ -119,13 +120,13 @@ public:
 		return *this;
 	}
 
-	hsv_color& operator=(const uchar4& c)
+	constexpr hsv& operator=(const uchar4& c)
 	{
 		*this = static_cast<vector4<type>>(c) / static_cast<type>(255.0);
 		return *this;
 	}
 
-	hsv_color& operator=(const vector4<type>& c)
+	constexpr hsv& operator=(const vector4<type>& c)
 	{
 		type max = arch::max(arch::max(c.r, c.g), c.b);
 		type min = arch::min(arch::min(c.r, c.g), c.b);
@@ -170,12 +171,12 @@ public:
 	type v;	///< 明度
 };
 
-template<typename CharT, class type> inline std::basic_ostream<CharT>& operator <<(std::basic_ostream<CharT>& os, const hsv_color<type>& c)
+template<typename CharT, class type> inline std::basic_ostream<CharT>& operator <<(std::basic_ostream<CharT>& os, const hsv<type>& c)
 {
 	return os << '(' << c.h << ',' << c.s << ',' << c.v << ')';
 }
 
-template<typename CharT, class type> inline std::basic_istream<CharT>& operator >>(std::basic_istream<CharT>& is, hsv_color<type>& c)
+template<typename CharT, class type> inline std::basic_istream<CharT>& operator >>(std::basic_istream<CharT>& is, hsv<type>& c)
 {
 	CharT dummy;
 	return is >> dummy >> c.h >> dummy >> c.s >> dummy >> c.v >> dummy;

@@ -82,41 +82,41 @@ public:
 	{
 	}
 
-	vector2& absolute()
+	constexpr vector2& absolute()
 	{
 		x = abs(x);
 		y = abs(y);
 		return *this;
 	}
 
-	vector2 absoluted() const
+	constexpr vector2 absoluted() const
 	{
 		return vector2<value_type>(abs(x), abs(y));
 	}
 
-	vector2& saturate()
+	constexpr vector2& saturate()
 	{
 		x = clamp(x, static_cast<value_type>(0.0), static_cast<value_type>(1.0));
 		y = clamp(y, static_cast<value_type>(0.0), static_cast<value_type>(1.0));
 		return *this;
 	}
 
-	vector2 saturated() const
+	constexpr vector2 saturated() const
 	{
 		return vector2<value_type>(clamp(x, static_cast<value_type>(0.0), static_cast<value_type>(1.0)), clamp(y, static_cast<value_type>(0.0), static_cast<value_type>(1.0)));
 	}
 
-	value_type squared_length() const
+	constexpr value_type squared_length() const
 	{
 		return x * x + y * y;
 	}
 
-	value_type length() const
+	constexpr value_type length() const
 	{
 		return sqrt(squared_length());
 	}
 
-	vector2& normalize()
+	constexpr vector2& normalize()
 	{
 		value_type len = length();
 		if (len > static_cast<value_type>(0.0))
@@ -131,7 +131,7 @@ public:
 		return *this;
 	}
 
-	vector2 normalized() const
+	constexpr vector2 normalized() const
 	{
 		value_type len = length();
 		if (len > static_cast<value_type>(0.0))
@@ -141,34 +141,34 @@ public:
 		return zero();
 	}
 
-	value_type dot(const vector2<value_type>& _vector) const
+	constexpr value_type dot(const vector2<value_type>& _vector) const
 	{
 		return x * _vector.x + y * _vector.y;
 	}
 
-	value_type cross(const vector2<value_type>& _vector) const
+	constexpr value_type cross(const vector2<value_type>& _vector) const
 	{
 		return x * _vector.y - y * _vector.x;
 	}
 
-	value_type squared_distance(const vector2<value_type>& _end) const
+	constexpr value_type squared_distance(const vector2<value_type>& _end) const
 	{
 		auto d = _end - *this;
 		return d.squared_length();
 	}
 
-	value_type distance(const vector2<value_type>& _end) const
+	constexpr value_type distance(const vector2<value_type>& _end) const
 	{
 		auto d = _end - *this;
 		return d.length();
 	}
 
-	bool all() const
+	constexpr bool all() const
 	{
 		return *this == zero();
 	}
 
-	bool any() const
+	constexpr bool any() const
 	{
 		return *this != zero();
 	}
@@ -186,131 +186,131 @@ public:
 	*/
 
 public:
-	vector2& operator=(const vector2& _vector)
+	constexpr vector2& operator=(const vector2& _vector)
 	{
 		x = _vector.x;
 		y = _vector.y;
 		return *this;
 	}
 
-	vector2 operator+(const vector2& _vector) const
+	constexpr vector2 operator+(const vector2& _vector) const
 	{
 		return vector2<value_type>(x + _vector.x, y + _vector.y);
 	}
 
-	vector2& operator+=(const vector2& _vector)
+	constexpr vector2& operator+=(const vector2& _vector)
 	{
 		x += _vector.x;
 		y += _vector.y;
 		return *this;
 	}
 
-	vector2 operator-(const vector2& _vector) const
+	constexpr vector2 operator-(const vector2& _vector) const
 	{
 		return vector2<value_type>(x - _vector.x, y - _vector.y);
 	}
 
-	vector2& operator-=(const vector2& _vector)
+	constexpr vector2& operator-=(const vector2& _vector)
 	{
 		x -= _vector.x;
 		y -= _vector.y;
 		return *this;
 	}
 
-	vector2 operator*(const vector2& _vector) const
+	constexpr vector2 operator*(const vector2& _vector) const
 	{
 		return vector2<value_type>(x * _vector.x, y * _vector.y);
 	}
 
-	vector2 operator*(value_type _value) const
+	constexpr vector2 operator*(value_type _value) const
 	{
 		return vector2<value_type>(x * _value, y * _value);
 	}
 
-	vector2& operator*=(const vector2& _vector)
+	constexpr vector2& operator*=(const vector2& _vector)
 	{
 		x *= _vector.x;
 		y *= _vector.y;
 		return *this;
 	}
 
-	vector2& operator*=(value_type _value)
+	constexpr vector2& operator*=(value_type _value)
 	{
 		x *= _value;
 		y *= _value;
 		return *this;
 	}
 
-	vector2 operator/(const vector2& _vector) const
+	constexpr vector2 operator/(const vector2& _vector) const
 	{
 		return vector2<value_type>(x / _vector.x, y / _vector.y);
 	}
 
-	vector2 operator/(value_type value) const
+	constexpr vector2 operator/(value_type value) const
 	{
 		return vector2<value_type>(x / value, y / value);
 	}
 
-	vector2& operator/=(const vector2& _vector)
+	constexpr vector2& operator/=(const vector2& _vector)
 	{
 		x /= _vector.x;
 		y /= _vector.y;
 		return *this;
 	}
 
-	vector2& operator/=(value_type _value)
+	constexpr vector2& operator/=(value_type _value)
 	{
 		x /= _value;
 		y /= _value;
 		return *this;
 	}
 
-	bool operator==(const vector2& _vector) const
+	constexpr bool operator==(const vector2& _vector) const
 	{
 		return (x == _vector.x && y == _vector.y);
 	}
 
-	bool operator!=(const vector2& _vector) const
+	constexpr bool operator!=(const vector2& _vector) const
 	{
 		return (x != _vector.x || y != _vector.y);
 	}
 
-	bool operator>(const vector2& _vector) const
+	constexpr bool operator>(const vector2& _vector) const
 	{
 		return squared_length() > _vector.squared_length();
 	}
 
-	bool operator>=(const vector2& _vector) const
+	constexpr bool operator>=(const vector2& _vector) const
 	{
 		return squared_length() >= _vector.squared_length();
 	}
 
-	bool operator<(const vector2& _vector) const
+	constexpr bool operator<(const vector2& _vector) const
 	{
 		return squared_length() < _vector.squared_length();
 	}
 
-	bool operator<=(const vector2& _vector) const
+	constexpr bool operator<=(const vector2& _vector) const
 	{
 		return squared_length() <= _vector.squared_length();
 	}
 
-	vector2 operator+() const
+	constexpr vector2 operator+() const
 	{
 		return vector2<value_type>(x, y);
 	}
 
-	vector2 operator-() const
+	constexpr vector2 operator-() const
 	{
 		return vector2<value_type>(-x, -y);
 	}
 
-	const value_type& operator[](uint index) const
+	constexpr const value_type& operator[](uint index) const
 	{
 		return data[index];
 	}
 
-	value_type& operator[](uint index)
+	constexpr value_type& operator[](uint index)
 	{
 		return data[index];
 	}
@@ -448,7 +448,7 @@ public:
 	{
 	}
 
-	vector3& absolute()
+	constexpr vector3& absolute()
 	{
 		x = abs(x);
 		y = abs(y);
@@ -456,12 +456,12 @@ public:
 		return *this;
 	}
 
-	vector3 absoluted() const
+	constexpr vector3 absoluted() const
 	{
 		return vector3<value_type>(abs(x), abs(y), abs(z));
 	}
 
-	vector3& saturate()
+	constexpr vector3& saturate()
 	{
 		x = clamp(x, static_cast<value_type>(0.0), static_cast<value_type>(1.0));
 		y = clamp(y, static_cast<value_type>(0.0), static_cast<value_type>(1.0));
@@ -469,22 +469,22 @@ public:
 		return *this;
 	}
 
-	vector3 saturated() const
+	constexpr vector3 saturated() const
 	{
 		return vector3<value_type>(clamp(x, static_cast<value_type>(0.0), static_cast<value_type>(1.0)), clamp(y, static_cast<value_type>(0.0), static_cast<value_type>(1.0)), clamp(z, static_cast<value_type>(0.0), static_cast<value_type>(1.0)));
 	}
 
-	value_type squared_length() const
+	constexpr value_type squared_length() const
 	{
 		return x * x + y * y + z * z;
 	}
 
-	value_type length() const
+	constexpr value_type length() const
 	{
 		return sqrt(squared_length());
 	}
 
-	vector3& normalize()
+	constexpr vector3& normalize()
 	{
 		value_type len = length();
 		if (len > static_cast<value_type>(0.0))
@@ -500,7 +500,7 @@ public:
 		return *this;
 	}
 
-	vector3 normalized() const
+	constexpr vector3 normalized() const
 	{
 		value_type len = length();
 		if (len > static_cast<value_type>(0.0))
@@ -510,40 +510,40 @@ public:
 		return zero();
 	}
 
-	value_type dot(const vector3<value_type>& _vector) const
+	constexpr value_type dot(const vector3<value_type>& _vector) const
 	{
 		return x * _vector.x + y * _vector.y + z * _vector.z;
 	}
 
-	vector3 cross(const vector3<value_type>& _vector) const
+	constexpr vector3 cross(const vector3<value_type>& _vector) const
 	{
 		return vector3<value_type>(y * _vector.z - z * _vector.y, z * _vector.x - x * _vector.z, x * _vector.y - y * _vector.x);
 	}
 
-	value_type squared_distance(const vector3<value_type>& _end) const
+	constexpr value_type squared_distance(const vector3<value_type>& _end) const
 	{
 		auto d = _end - *this;
 		return d.squared_length();
 	}
 
-	value_type distance(const vector3<value_type>& _end) const
+	constexpr value_type distance(const vector3<value_type>& _end) const
 	{
 		auto d = _end - *this;
 		return d.length();
 	}
 
-	bool all() const
+	constexpr bool all() const
 	{
 		return *this == zero();
 	}
 
-	bool any() const
+	constexpr bool any() const
 	{
 		return *this != zero();
 	}
 
 public:
-	vector3& operator=(const vector3& _vector)
+	constexpr vector3& operator=(const vector3& _vector)
 	{
 		x = _vector.x;
 		y = _vector.y;
@@ -551,12 +551,12 @@ public:
 		return *this;
 	}
 
-	vector3 operator+(const vector3& _vector) const
+	constexpr vector3 operator+(const vector3& _vector) const
 	{
 		return vector3<value_type>(x + _vector.x, y + _vector.y, z + _vector.z);
 	}
 
-	vector3& operator+=(const vector3& _vector)
+	constexpr vector3& operator+=(const vector3& _vector)
 	{
 		x += _vector.x;
 		y += _vector.y;
@@ -564,12 +564,12 @@ public:
 		return *this;
 	}
 
-	vector3 operator-(const vector3& _vector) const
+	constexpr vector3 operator-(const vector3& _vector) const
 	{
 		return vector3<value_type>(x - _vector.x, y - _vector.y, z - _vector.z);
 	}
 
-	vector3& operator-=(const vector3& _vector)
+	constexpr vector3& operator-=(const vector3& _vector)
 	{
 		x -= _vector.x;
 		y -= _vector.y;
@@ -577,17 +577,17 @@ public:
 		return *this;
 	}
 
-	vector3 operator*(const vector3& _vector) const
+	constexpr vector3 operator*(const vector3& _vector) const
 	{
 		return vector3<value_type>(x * _vector.x, y * _vector.y, z * _vector.z);
 	}
 
-	vector3 operator*(value_type _value) const
+	constexpr vector3 operator*(value_type _value) const
 	{
 		return vector3<value_type>(x * _value, y * _value, z * _value);
 	}
 
-	vector3& operator*=(const vector3& _vector)
+	constexpr vector3& operator*=(const vector3& _vector)
 	{
 		x *= _vector.x;
 		y *= _vector.y;
@@ -595,7 +595,7 @@ public:
 		return *this;
 	}
 
-	vector3& operator*=(value_type _value)
+	constexpr vector3& operator*=(value_type _value)
 	{
 		x *= _value;
 		y *= _value;
@@ -603,17 +603,17 @@ public:
 		return *this;
 	}
 
-	vector3 operator/(const vector3& _vector) const
+	constexpr vector3 operator/(const vector3& _vector) const
 	{
 		return vector3<value_type>(x / _vector.x, y / _vector.y, z / _vector.z);
 	}
 
-	vector3 operator/(value_type _value) const
+	constexpr vector3 operator/(value_type _value) const
 	{
 		return vector3<value_type>(x / _value, y / _value, z / _value);
 	}
 
-	vector3& operator/=(const vector3& _vector)
+	constexpr vector3& operator/=(const vector3& _vector)
 	{
 		x /= _vector.x;
 		y /= _vector.y;
@@ -621,7 +621,7 @@ public:
 		return *this;
 	}
 
-	vector3& operator/=(value_type _value)
+	constexpr vector3& operator/=(value_type _value)
 	{
 		x /= _value;
 		y /= _value;
@@ -629,52 +629,52 @@ public:
 		return *this;
 	}
 
-	bool operator==(const vector3& _vector) const
+	constexpr bool operator==(const vector3& _vector) const
 	{
 		return (x == _vector.x && y == _vector.y && z == _vector.z);
 	}
 
-	bool operator!=(const vector3& _vector) const
+	constexpr bool operator!=(const vector3& _vector) const
 	{
 		return (x != _vector.x || y != _vector.y || z != _vector.z);
 	}
 
-	bool operator>(const vector3& _vector) const
+	constexpr bool operator>(const vector3& _vector) const
 	{
 		return squared_length() > _vector.squared_length();
 	}
 
-	bool operator>=(const vector3& _vector) const
+	constexpr bool operator>=(const vector3& _vector) const
 	{
 		return squared_length() >= _vector.squared_length();
 	}
 
-	bool operator<(const vector3& _vector) const
+	constexpr bool operator<(const vector3& _vector) const
 	{
 		return squared_length() < _vector.squared_length();
 	}
 
-	bool operator<=(const vector3& _vector) const
+	constexpr bool operator<=(const vector3& _vector) const
 	{
 		return squared_length() <= _vector.squared_length();
 	}
 
-	vector3 operator+() const
+	constexpr vector3 operator+() const
 	{
 		return vector3<value_type>(x, y, z);
 	}
 
-	vector3 operator-() const
+	constexpr vector3 operator-() const
 	{
 		return vector3<value_type>(-x, -y, -z);
 	}
 
-	value_type operator[](uint _index) const
+	constexpr value_type operator[](uint _index) const
 	{
 		return data[_index];
 	}
 
-	value_type& operator[](uint _index)
+	constexpr value_type& operator[](uint _index)
 	{
 		return data[_index];
 	}
@@ -840,7 +840,7 @@ public:
 	{
 	}
 
-	vector4& absolute()
+	constexpr vector4& absolute()
 	{
 		x = abs(x);
 		y = abs(y);
@@ -849,12 +849,12 @@ public:
 		return *this;
 	}
 
-	vector4 absoluted() const
+	constexpr vector4 absoluted() const
 	{
 		return vector4<value_type>(abs(x), abs(y), abs(z), abs(w));
 	}
 
-	vector4& saturate()
+	constexpr vector4& saturate()
 	{
 		x = clamp(x, static_cast<value_type>(0.0), static_cast<value_type>(1.0));
 		y = clamp(y, static_cast<value_type>(0.0), static_cast<value_type>(1.0));
@@ -863,22 +863,22 @@ public:
 		return *this;
 	}
 
-	vector4 saturated() const
+	constexpr vector4 saturated() const
 	{
 		return vector4<value_type>(clamp(x, static_cast<value_type>(0.0), static_cast<value_type>(1.0)), clamp(y, static_cast<value_type>(0.0), static_cast<value_type>(1.0)), clamp(z, static_cast<value_type>(0.0), static_cast<value_type>(1.0)), clamp(w, static_cast<value_type>(0.0), static_cast<value_type>(1.0)));
 	}
 
-	value_type squared_length() const
+	constexpr value_type squared_length() const
 	{
 		return x * x + y * y + z * z + w * w;
 	}
 
-	value_type length() const
+	constexpr value_type length() const
 	{
 		return sqrt(squared_length());
 	}
 
-	vector4& normalize()
+	constexpr vector4& normalize()
 	{
 		value_type len = length();
 		if (len > static_cast<value_type>(0.0))
@@ -895,7 +895,7 @@ public:
 		return *this;
 	}
 
-	vector4 normalized() const
+	constexpr vector4 normalized() const
 	{
 		value_type len = length();
 		if (len > static_cast<value_type>(0.0))
@@ -905,35 +905,35 @@ public:
 		return zero();
 	}
 
-	value_type dot(const vector4<value_type>& _vector) const
+	constexpr value_type dot(const vector4<value_type>& _vector) const
 	{
 		return x * _vector.x + y * _vector.y + z * _vector.z + w * _vector.w;
 	}
 
-	value_type squared_distance(const vector4<value_type>& _end) const
+	constexpr value_type squared_distance(const vector4<value_type>& _end) const
 	{
 		auto d = _end - *this;
 		return d.squared_length();
 	}
 
-	value_type distance(const vector4<value_type>& _end) const
+	constexpr value_type distance(const vector4<value_type>& _end) const
 	{
 		auto d = _end - *this;
 		return d.length();
 	}
 
-	bool all() const
+	constexpr bool all() const
 	{
 		return *this == zero();
 	}
 
-	bool any() const
+	constexpr bool any() const
 	{
 		return *this != zero();
 	}
 
 public:
-	vector4& operator=(const vector4& vector)
+	constexpr vector4& operator=(const vector4& vector)
 	{
 		x = vector.x;
 		y = vector.y;
@@ -942,12 +942,12 @@ public:
 		return *this;
 	}
 
-	vector4 operator+(const vector4& vector) const
+	constexpr vector4 operator+(const vector4& vector) const
 	{
 		return vector4<value_type>(x + vector.x, y + vector.y, z + vector.z, w + vector.w);
 	}
 
-	vector4& operator+=(const vector4& vector)
+	constexpr vector4& operator+=(const vector4& vector)
 	{
 		x += vector.x;
 		y += vector.y;
@@ -956,12 +956,12 @@ public:
 		return *this;
 	}
 
-	vector4 operator-(const vector4& vector) const
+	constexpr vector4 operator-(const vector4& vector) const
 	{
 		return vector4<value_type>(x - vector.x, y - vector.y, z - vector.z, w - vector.w);
 	}
 
-	vector4& operator-=(const vector4& vector)
+	constexpr vector4& operator-=(const vector4& vector)
 	{
 		x -= vector.x;
 		y -= vector.y;
@@ -970,17 +970,17 @@ public:
 		return *this;
 	}
 
-	vector4 operator*(const vector4& vector) const
+	constexpr vector4 operator*(const vector4& vector) const
 	{
 		return vector4<value_type>(x * vector.x, y * vector.y, z * vector.z, w * vector.w);
 	}
 
-	vector4 operator*(value_type value) const
+	constexpr vector4 operator*(value_type value) const
 	{
 		return vector4<value_type>(x * value, y * value, z * value, w * value);
 	}
 
-	vector4& operator*=(const vector4& vector)
+	constexpr vector4& operator*=(const vector4& vector)
 	{
 		x *= vector.x;
 		y *= vector.y;
@@ -989,7 +989,7 @@ public:
 		return *this;
 	}
 
-	vector4& operator*=(value_type value)
+	constexpr vector4& operator*=(value_type value)
 	{
 		x *= value;
 		y *= value;
@@ -998,17 +998,17 @@ public:
 		return *this;
 	}
 
-	vector4 operator/(const vector4& vector) const
+	constexpr vector4 operator/(const vector4& vector) const
 	{
 		return vector4<value_type>(x / vector.x, y / vector.y, z / vector.z, w / vector.w);
 	}
 
-	vector4 operator/(value_type value) const
+	constexpr vector4 operator/(value_type value) const
 	{
 		return vector4<value_type>(x / value, y / value, z / value, w / value);
 	}
 
-	vector4& operator/=(const vector4& vector)
+	constexpr vector4& operator/=(const vector4& vector)
 	{
 		x /= vector.x;
 		y /= vector.y;
@@ -1017,7 +1017,7 @@ public:
 		return *this;
 	}
 
-	vector4& operator/=(value_type value)
+	constexpr vector4& operator/=(value_type value)
 	{
 		x /= value;
 		y /= value;
@@ -1026,52 +1026,52 @@ public:
 		return *this;
 	}
 
-	bool operator==(const vector4& vector) const
+	constexpr bool operator==(const vector4& vector) const
 	{
 		return (x == vector.x && y == vector.y && z == vector.z && w == vector.w);
 	}
 
-	bool operator!=(const vector4& vector) const
+	constexpr bool operator!=(const vector4& vector) const
 	{
 		return (x != vector.x || y != vector.y || z != vector.z || w != vector.w);
 	}
 
-	bool operator>(const vector4& _vector) const
+	constexpr bool operator>(const vector4& _vector) const
 	{
 		return squared_length() > _vector.squared_length();
 	}
 
-	bool operator>=(const vector4& _vector) const
+	constexpr bool operator>=(const vector4& _vector) const
 	{
 		return squared_length() >= _vector.squared_length();
 	}
 
-	bool operator<(const vector4& _vector) const
+	constexpr bool operator<(const vector4& _vector) const
 	{
 		return squared_length() < _vector.squared_length();
 	}
 
-	bool operator<=(const vector4& _vector) const
+	constexpr bool operator<=(const vector4& _vector) const
 	{
 		return squared_length() <= _vector.squared_length();
 	}
 
-	vector4 operator+() const
+	constexpr vector4 operator+() const
 	{
 		return vector4<value_type>(x, y, z, w);
 	}
 
-	vector4 operator-() const
+	constexpr vector4 operator-() const
 	{
 		return vector4<value_type>(-x, -y, -z, -w);
 	}
 
-	const value_type& operator[](uint index) const
+	constexpr const value_type& operator[](uint index) const
 	{
 		return data[index];
 	}
 
-	value_type& operator[](uint index)
+	constexpr value_type& operator[](uint index)
 	{
 		return data[index];
 	}
@@ -1188,6 +1188,16 @@ public:
 	};
 };
 
+template<typename value_type> inline constexpr vector2<value_type> operator *(const value_type& _value, const vector2<value_type>& _vector)
+{
+	return _vector * _value;
+}
+
+template<typename value_type> inline constexpr vector2<value_type> operator /(const value_type& _value, const vector2<value_type>& _vector)
+{
+	return vector2<value_type>(_value / _vector.x, _value / _vector.y);
+}
+
 template<typename value_type, typename CharT> inline std::basic_ostream<CharT>& operator <<(std::basic_ostream<CharT>& os, const vector2<value_type>& vector)
 {
 	return os << '(' << vector.x << ',' << vector.y << ')';
@@ -1199,6 +1209,16 @@ template<typename value_type, typename CharT> inline std::basic_istream<CharT>& 
 	return is >> dummy >> vector.x >> dummy >> vector.y >> dummy;
 }
 
+template<typename value_type> inline constexpr vector3<value_type> operator *(const value_type& _value, const vector3<value_type>& _vector)
+{
+	return _vector * _value;
+}
+
+template<typename value_type> inline constexpr vector3<value_type> operator /(const value_type& _value, const vector3<value_type>& _vector)
+{
+	return vector3<value_type>(_value / _vector.x, _value / _vector.y, _value / _vector.z);
+}
+
 template<typename value_type, typename CharT> inline std::basic_ostream<CharT>& operator <<(std::basic_ostream<CharT>& os, const vector3<value_type>& vector)
 {
 	return os << '(' << vector.x << ',' << vector.y << ',' << vector.z << ')';
@@ -1208,6 +1228,16 @@ template<typename value_type, typename CharT> inline std::basic_istream<CharT>& 
 {
 	CharT dummy;
 	return is >> dummy >> vector.x >> dummy >> vector.y >> dummy >> vector.z >> dummy;
+}
+
+template<typename value_type> inline constexpr vector4<value_type> operator *(const value_type& _value, const vector4<value_type>& _vector)
+{
+	return _vector * _value;
+}
+
+template<typename value_type> inline constexpr vector4<value_type> operator /(const value_type& _value, const vector4<value_type>& _vector)
+{
+	return vector3<value_type>(_value / _vector.x, _value / _vector.y, _value / _vector.z, _value / _vector.w);
 }
 
 template<typename value_type, typename CharT> inline std::basic_ostream<CharT>& operator <<(std::basic_ostream<CharT>& os, const vector4<value_type>& vector)
@@ -1241,27 +1271,27 @@ template <typename value_type> inline vector3<value_type> swizzle(const vector2<
 	return vector3<value_type>(vector[x], vector[y], vector[z]);
 }
 
-template <typename value_type> inline vector3<value_type> swizzle(const vector3<value_type>& vector, unsigned int x, unsigned int y, unsigned int z)
+template <typename value_type> inline constexpr vector3<value_type> swizzle(const vector3<value_type>& vector, unsigned int x, unsigned int y, unsigned int z)
 {
 	return vector3<value_type>(vector[x], vector[y], vector[z]);
 }
 
-template <typename value_type> inline vector3<value_type> swizzle(const vector4<value_type>& vector, unsigned int x, unsigned int y, unsigned int z)
+template <typename value_type> inline constexpr vector3<value_type> swizzle(const vector4<value_type>& vector, unsigned int x, unsigned int y, unsigned int z)
 {
 	return vector3<value_type>(vector[x], vector[y], vector[z]);
 }
 
-template <typename value_type> inline vector4<value_type> swizzle(const vector2<value_type>& vector, unsigned int x, unsigned int y, unsigned int z, unsigned int w)
+template <typename value_type> inline constexpr vector4<value_type> swizzle(const vector2<value_type>& vector, unsigned int x, unsigned int y, unsigned int z, unsigned int w)
 {
 	return vector4<value_type>(vector[x], vector[y], vector[z], vector[w]);
 }
 
-template <typename value_type> inline vector4<value_type> swizzle(const vector3<value_type>& vector, unsigned int x, unsigned int y, unsigned int z, unsigned int w)
+template <typename value_type> inline constexpr vector4<value_type> swizzle(const vector3<value_type>& vector, unsigned int x, unsigned int y, unsigned int z, unsigned int w)
 {
 	return vector4<value_type>(vector[x], vector[y], vector[z], vector[w]);
 }
 
-template <typename value_type> inline vector4<value_type> swizzle(const vector4<value_type>& vector, unsigned int x, unsigned int y, unsigned int z, unsigned int w)
+template <typename value_type> inline constexpr vector4<value_type> swizzle(const vector4<value_type>& vector, unsigned int x, unsigned int y, unsigned int z, unsigned int w)
 {
 	return vector4<value_type>(vector[x], vector[y], vector[z], vector[w]);
 }
