@@ -14,7 +14,6 @@
 
 #include "color_chart.h"
 #include "constants.h"
-#include "dimension.h"
 #include "functions.h"
 #include "hsv.h"
 #include "interpolation.h"
@@ -26,5 +25,4 @@
 #include "quaternion.h"
 #include "random.h"
 #include "scalar.h"
-#include "value.h"
 #include "vector.h"
